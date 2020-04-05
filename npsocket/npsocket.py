@@ -59,9 +59,9 @@ class SocketNumpyArray():
         self.data = b''
 
     def receive_array(self):
-
+        buffer_size = 1000000 # 4096
         while len(self.data) < self.payload_size:
-            self.data += self.conn.recv(4096)
+            self.data += self.conn.recv(buffer_size)
 
         packed_msg_size = self.data[:self.payload_size]
         self.data = self.data[self.payload_size:]
@@ -69,7 +69,7 @@ class SocketNumpyArray():
 
         # Retrieve all data based on message size
         while len(self.data) < msg_size:
-            self.data += self.conn.recv(4096)
+            self.data += self.conn.recv(buffer_size)
 
         frame_data = self.data[:msg_size]
         self.data = self.data[msg_size:]

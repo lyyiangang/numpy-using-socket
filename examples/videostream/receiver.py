@@ -1,4 +1,5 @@
-
+import sys
+sys.path.append('../../npsocket')
 import cv2
 from npsocket import SocketNumpyArray
 
